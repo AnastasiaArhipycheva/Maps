@@ -1,0 +1,8 @@
+<resources>
+        <string name="app_name">Map_2.0</string>
+        <string name="title_activity_maps">Map</string>
+        <string name="error_empty_name">Имя не может быть пустым!</string>
+        <string name="error_name_already_exist">Данное имя уже зарегистрировано</string>
+        <string name="accept">Принять</string>
+        <string name="cancel">Отмена</string>
+</resources>

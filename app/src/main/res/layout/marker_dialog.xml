@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/markerName"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"/>
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/error"
+        android:text="@string/error_empty_name"
+        android:textColor="@android:color/holo_red_dark"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/btnCancel"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+        <Button
+            android:textColor="@color/colorAccent"
+            android:text="@string/accept"
+            android:id="@+id/btnAccept"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+    </LinearLayout>
+
+</LinearLayout>
