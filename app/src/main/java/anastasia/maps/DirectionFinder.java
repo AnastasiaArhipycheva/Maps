@@ -19,6 +19,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import anastasia.maps.Models.Distance;
+import anastasia.maps.Models.Duration;
+import anastasia.maps.Models.Route;
+
 /**
  * Created by Anastasia.
  */

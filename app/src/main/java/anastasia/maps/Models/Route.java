@@ -1,4 +1,4 @@
-package anastasia.maps;
+package anastasia.maps.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 

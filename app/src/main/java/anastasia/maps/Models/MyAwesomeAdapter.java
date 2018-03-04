@@ -1,4 +1,4 @@
-package anastasia.maps;
+package anastasia.maps.Models;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.Marker;
 
+import anastasia.maps.R;
 
 
 public class MyAwesomeAdapter extends BaseAdapter {
@@ -17,7 +18,7 @@ public class MyAwesomeAdapter extends BaseAdapter {
     Markers markers;
     LayoutInflater inflater;
 
-    public MyAwesomeAdapter(Context context, Markers markers) {
+    public MyAwesomeAdapter(Context context, MarkersImpl markers) {
         this.markers = markers;
         inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
     }

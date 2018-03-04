@@ -1,13 +1,13 @@
-package anastasia.maps;
+package anastasia.maps.Models;
 
 /**
  * Created by Anastasia.
  */
-public class Duration {
+public class Distance {
     public String text;
     public int value;
 
-    public Duration(String text, int value) {
+    public Distance(String text, int value) {
         this.text = text;
         this.value = value;
     }

@@ -32,10 +32,17 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import anastasia.maps.Models.MarkersImpl;
+import anastasia.maps.Models.MyAwesomeAdapter;
+import anastasia.maps.Models.Route;
+import anastasia.maps.Presenter.Presenter;
+import anastasia.maps.Presenter.PresenterImpl;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
 
+
+    Presenter presenter;
     private GoogleMap mMap;
     private Button btnFindPath;
     private EditText etOrigin;
@@ -48,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<String> Loc = new ArrayList<>();
     ArrayAdapter<String> adapterLoc;
     Spinner spinnerL;
-    MyAwesomeAdapter markerAdapter;
+//    MyAwesomeAdapter markerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         spinnerT.setSelection(0);
         spinnerL.setSelection(0);
         // устанавливаем обработчик нажатия
+        presenter = new PresenterImpl(mMap);
 
         spinnerT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -142,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
+//in model
     private void sendRequest() {
         String origin = etOrigin.getText().toString();
         String destination = etDestination.getText().toString();
@@ -172,7 +180,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng NNGU = new LatLng(56.299166, 43.982493);
 
-        Markers.Get().addMarker(mMap.addMarker(new MarkerOptions().position(NNGU).title("Marker in NNGU")));
+//        MarkersImpl.Get().addMarker(mMap.addMarker(new MarkerOptions().position(NNGU).title("Marker in NNGU")));
+        presenter.getMarker().addMarker(mMap.addMarker(new MarkerOptions().position(NNGU).title("Marker in NNGU")));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NNGU, 18));
         originMarkers.add(mMap.addMarker(new MarkerOptions()
@@ -190,10 +199,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
+//        MyAwesomeAdapter markerAdapter = presenter.getAdapter(this);
+//        markerAdapter = new MyAwesomeAdapter(this, MarkersImpl.Get());
 
-        markerAdapter = new MyAwesomeAdapter(this, Markers.Get());
-
-        spinnerL.setAdapter(markerAdapter);
+        spinnerL.setAdapter(presenter.getAdapter(this));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -215,12 +224,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (in.trim().equals("")){
                             error.setVisibility(View.VISIBLE);
                             error.setText(R.string.error_empty_name);
-                        }else if (markerAdapter.contains(in))
+//                        }else if (markerAdapter.contains(in))
+                        }else if (presenter.isMarkerNameExist(in))
                         {
                             error.setVisibility(View.VISIBLE);
                             error.setText(R.string.error_name_already_exist);
                         }else {
-                            markerAdapter.add(mMap.addMarker(new MarkerOptions().position(latLng).title(in)));
+//                            markerAdapter.add(mMap.addMarker(new MarkerOptions().position(latLng).title(in)));
+                            presenter.addMarker(mMap.addMarker(new MarkerOptions().position(latLng).title(in)));
                             dialog.dismiss();
                         }
                     }
